@@ -13,9 +13,9 @@ export default function TabTwoScreen() {
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
       headerImage={<Ionicons size={310} name="code-slash" style={styles.headerImage} />}>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Adan Commputadora</ThemedText>
+        <ThemedText type="title">Adan Commputador Nestor Hernandez|</ThemedText>
       </ThemedView>
-      <ThemedText>fjsdkfjdslkflkjs</ThemedText>
+      <ThemedText>Adan Computadora</ThemedText>
       <Collapsible title="File-based routing">
         <ThemedText>
           This app has two screens:{' '}
