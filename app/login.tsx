@@ -56,6 +56,14 @@ export default function login() {
           <Text style={loginStyle.textBtn}>Iniciar Sesion</Text>
         </Pressable>
 
+        <Pressable
+          style={loginStyle.btnSesion}
+          onPress={() => router.push('registro') }
+        >
+          <Text style={loginStyle.textBtn}>Registrarse</Text>
+        </Pressable>
+
+
       </SafeAreaView>
     </ScrollView>
   );
