@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native';
+import { globalStyles } from '@/assets/styles/globalStyle';
 
 export default function settings() {
   return (

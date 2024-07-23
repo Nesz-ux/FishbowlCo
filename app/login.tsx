@@ -57,7 +57,7 @@ export default function login() {
         </Pressable>
 
         <Pressable
-          style={loginStyle.btnSesion}
+          style={loginStyle.btnRegistro}
           onPress={() => router.push('registro') }
         >
           <Text style={loginStyle.textBtn}>Registrarse</Text>

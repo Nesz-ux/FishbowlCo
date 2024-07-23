@@ -1,10 +1,23 @@
-import { View, Text, StyleSheet } from 'react-native';
-
+import { View, Text, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
+import { globalStyles } from '@/assets/styles/globalStyle';
+import { EvilIcons } from '@expo/vector-icons';
 export default function perfil() {
   return (
-    <View style={styles.container}>
-      <Text>Tab [Perfil]</Text>
-    </View>
+    <ScrollView>
+      <SafeAreaView style={globalStyles.container}>
+        <Text style={globalStyles.titulo}>Perfil</Text>
+        <View style={globalStyles.inputContainer}>
+          <EvilIcons
+            name='user'
+            size={35}
+            color="#00086a"
+            style={globalStyles.icon}
+          />
+          <Text style={globalStyles.textlabel}>Nombre</Text>
+          
+        </View>
+      </SafeAreaView>
+    </ScrollView>
   );
 }
 

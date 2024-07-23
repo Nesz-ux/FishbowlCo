@@ -42,6 +42,16 @@ export const loginStyle = StyleSheet.create({
     backgroundColor:'#4246b8',
     paddingVertical:15,
     width:300,
+    marginTop: 15,  
+  },
+  btnRegistro: {
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:25,
+    elevation:3,
+    backgroundColor:'#4246b8',
+    paddingVertical:15,
+    width:300,
     marginTop: 15,
     marginBottom:80
   },
@@ -54,11 +64,4 @@ export const loginStyle = StyleSheet.create({
 
 });
 
-/*
-Azul Fuerte Titulos
-"#00003E"
-Texto
-"#424d98"
-Fondo
-""
-*/
+

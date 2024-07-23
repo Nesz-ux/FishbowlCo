@@ -1,10 +1,16 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { globalStyles } from '@/assets/styles/globalStyle';
+import { View, Text, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
+
 
 export default function Tab() {
   return (
-    <View style={styles.container}>
-      <Text>Tab [Home]</Text>
-    </View>
+    <ScrollView>
+      <SafeAreaView style={globalStyles.container}>
+        <View style={globalStyles.titulo}>
+          <Text>FISHBOLW CO</Text>
+        </View>
+      </SafeAreaView>
+    </ScrollView>
   );
 }
 
