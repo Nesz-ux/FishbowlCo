@@ -5,11 +5,19 @@ import { registroStyle } from '@/assets/styles/registroStyle'
 import { router } from 'expo-router'
 import axios from 'axios'
 
-export default class registro extends Component {
-  render() {
+export default function registro (){
+ 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const handleRegister = async () => {
+      try{
+        await axios.post('http://localhost:5000/register')
+      }catch(error){
+
+      }
+    }
 
     return (
       <ScrollView>
@@ -76,5 +84,5 @@ export default class registro extends Component {
         </SafeAreaView>
       </ScrollView>
     )
-  }
+  
 }
