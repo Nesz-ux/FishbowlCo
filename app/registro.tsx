@@ -1,11 +1,16 @@
 import { SafeAreaView, ScrollView, Text, TextInput, View, Pressable } from 'react-native'
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { AntDesign, Fontisto, Ionicons } from '@expo/vector-icons'
 import { registroStyle } from '@/assets/styles/registroStyle'
 import { router } from 'expo-router'
+import axios from 'axios'
 
 export default class registro extends Component {
   render() {
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
       <ScrollView>
         <SafeAreaView style={registroStyle.container}>
