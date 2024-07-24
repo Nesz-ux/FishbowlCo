@@ -1,4 +1,4 @@
-import { SafeAreaView, ScrollView, Text, TextInput, View, Pressable } from 'react-native'
+import { SafeAreaView, ScrollView, Text, TextInput, View, Pressable, Alert } from 'react-native'
 import React, { Component, useState } from 'react'
 import { AntDesign, Fontisto, Ionicons } from '@expo/vector-icons'
 import { registroStyle } from '@/assets/styles/registroStyle'
@@ -13,9 +13,10 @@ export default function registro (){
 
     const handleRegister = async () => {
       try{
-        await axios.post('http://localhost:5000/register')
+        await axios.post('http://192.168.100.5:5000/register', {username, email, password});
+        Alert.alert('Registro Exitoso')
       }catch(error){
-
+        console.log(error)
       }
     }
 
@@ -43,6 +44,8 @@ export default function registro (){
             placeholder="Nombre de Usuario"
             placeholderTextColor="#00086a"
             style={registroStyle.input}
+            value={username}
+            onChangeText={setUsername}
           />
         </View>
 
@@ -57,6 +60,8 @@ export default function registro (){
             placeholder="Correo Electronico"
             placeholderTextColor="#00086a"
             style={registroStyle.input}
+            value={email}
+            onChangeText={setEmail}
           />
         </View>
 
@@ -71,12 +76,14 @@ export default function registro (){
             placeholder="Contraseña"
             placeholderTextColor="#00086a"
             style={registroStyle.input}
+            value={password}
+            onChangeText={setPassword}
           />
         </View>
 
         <Pressable
           style={registroStyle.btnSesion}
-          onPress={() => router.push('login') }
+          onPress={handleRegister}
         >
           <Text style={registroStyle.textBtn}>Registrar</Text>
         </Pressable>
