@@ -5,13 +5,32 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
-  Pressable
+  Pressable,
+  Alert
 } from "react-native";
 import { loginStyle } from "../assets/styles/loginStyle";
 import { EvilIcons, AntDesign } from "@expo/vector-icons";
 import { router } from "expo-router";
+import axios from "axios";
+import { useState } from "react";
 
 export default function login() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+    try{
+      const response = await axios.post('http://192.168.100.5:5000/login', {email, password});
+      const token = response.data.token;
+      Alert.alert('login Exitoso')
+      router.push("(tabs)/Home");
+    }catch(error){
+      Alert.alert('Error al Iniciar sesion')
+      console.log(error)
+    }
+  }
+
   return (
     <ScrollView>
       <SafeAreaView style={loginStyle.container}>
@@ -29,9 +48,11 @@ export default function login() {
             style={loginStyle.icon}
           />
           <TextInput
-            placeholder="Usuario"
+            placeholder="Email"
             placeholderTextColor="#00086a"
             style={loginStyle.input}
+            value={email}
+            onChangeText={setEmail}
           />
         </View>
 
@@ -46,12 +67,14 @@ export default function login() {
             placeholder="Contraseña"
             placeholderTextColor="#00086a"
             style={loginStyle.input}
+            value={password}
+            onChangeText={setPassword}
           />
         </View>
 
         <Pressable
           style={loginStyle.btnSesion}
-          onPress={() => router.push('(tabs)/Home') }
+          onPress={ handleLogin }
         >
           <Text style={loginStyle.textBtn}>Iniciar Sesion</Text>
         </Pressable>

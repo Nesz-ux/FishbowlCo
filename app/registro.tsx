@@ -14,7 +14,8 @@ export default function registro (){
     const handleRegister = async () => {
       try{
         await axios.post('http://192.168.100.5:5000/register', {username, email, password});
-        Alert.alert('Registro Exitoso')
+        Alert.alert('Registro Exitoso');
+        router.push("login");
       }catch(error){
         console.log(error)
       }
