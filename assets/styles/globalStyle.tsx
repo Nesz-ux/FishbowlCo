@@ -34,5 +34,11 @@ export const globalStyles = StyleSheet.create({
     textTransform: "uppercase",
     fontWeight:"600",
     color:'#00086a'
-  }
+  },
+  TITULO1: {
+    fontFamily: 'ConcertOne-Regular',
+    fontSize: 40,
+    marginTop:50,
+    color:"#00086a"
+  },
 });
