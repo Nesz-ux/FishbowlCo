@@ -76,7 +76,8 @@ export default function login() {
 
         <Pressable
           style={loginStyle.btnSesion}
-          onPress={ handleLogin }
+          //onPress={ handleLogin }
+          onPress={() => router.push('(tabs)/Home')}
         >
           <Text style={loginStyle.textBtn}>Iniciar Sesion</Text>
         </Pressable>
