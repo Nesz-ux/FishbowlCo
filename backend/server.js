@@ -88,6 +88,17 @@ app.post('/login', [
     console.error(error);
     res.status(500).send('Server error');
   }
+
+  //Ruta para obtener los datos del perfi
+  app.get('/profile' , auth, async(req, res) => {
+    try{
+      const user = await User.findById(req.user.id).select('-password');
+      res.json(user);
+    }catch(err){
+      res.status(500).send('server error')
+    }
+  })
+
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

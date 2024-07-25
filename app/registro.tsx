@@ -5,6 +5,7 @@ import { registroStyle } from '@/assets/styles/registroStyle'
 import { router } from 'expo-router'
 import axios from 'axios'
 
+
 export default function registro (){
  
     const [username, setUsername] = useState('');

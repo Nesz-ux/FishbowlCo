@@ -13,6 +13,7 @@ import { EvilIcons, AntDesign } from "@expo/vector-icons";
 import { router } from "expo-router";
 import axios from "axios";
 import { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function login() {
 
@@ -23,6 +24,7 @@ export default function login() {
     try{
       const response = await axios.post('http://192.168.100.5:5000/login', {email, password});
       const token = response.data.token;
+      await AsyncStorage.setItem('token', token)
       Alert.alert('login Exitoso')
       router.push("(tabs)/Home");
     }catch(error){
