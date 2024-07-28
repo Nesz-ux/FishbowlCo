@@ -4,6 +4,7 @@ import { AntDesign, Fontisto, Ionicons } from '@expo/vector-icons'
 import { registroStyle } from '@/assets/styles/registroStyle'
 import { router } from 'expo-router'
 import axios from 'axios'
+import API_BASE_URL from '../config.js' 
 
 
 export default function registro (){
@@ -14,7 +15,7 @@ export default function registro (){
 
     const handleRegister = async () => {
       try{
-        await axios.post('http://192.168.100.5:5000/register', {username, email, password});
+        await axios.post(`${API_BASE_URL}/register`, {username, email, password});
         Alert.alert('Registro Exitoso');
         router.push("login");
       }catch(error){

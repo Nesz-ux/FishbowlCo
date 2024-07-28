@@ -8,11 +8,12 @@ import {
   Pressable,
   Alert
 } from "react-native";
+import API_BASE_URL from '../config.js';
 import { loginStyle } from "../assets/styles/loginStyle";
 import { EvilIcons, AntDesign } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { router, useLocalSearchParams,useRouter } from "expo-router";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function login() {
@@ -22,7 +23,7 @@ export default function login() {
 
   const handleLogin = async () => {
     try{
-      const response = await axios.post('http://192.168.100.5:5000/login', {email, password});
+      const response = await axios.post(`${API_BASE_URL}/login`, {email, password});
       const token = response.data.token;
       await AsyncStorage.setItem('token', token)
       Alert.alert('login Exitoso')
@@ -31,7 +32,8 @@ export default function login() {
       Alert.alert('Error al Iniciar sesion')
       console.log(error)
     }
-  }
+  };
+
 
   return (
     <ScrollView>
@@ -76,8 +78,8 @@ export default function login() {
 
         <Pressable
           style={loginStyle.btnSesion}
-          //onPress={ handleLogin }
-          onPress={() => router.push('(tabs)/Home')}
+          onPress={ handleLogin }
+          //onPress={() => router.push('(tabs)/Home')}
         >
           <Text style={loginStyle.textBtn}>Iniciar Sesion</Text>
         </Pressable>
