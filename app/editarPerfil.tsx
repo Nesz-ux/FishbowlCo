@@ -47,7 +47,7 @@ export default function editarPerfil() {
     const token = await AsyncStorage.getItem("token");
     try {
       const response = await axios.put(
-        "http://192.168.100.5:5000/profile",
+        `${API_BASE_URL}/profile`,
         { username, email, password },
         {
           headers: {
