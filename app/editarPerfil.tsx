@@ -14,7 +14,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { router } from "expo-router";
 import { editarPerfilStyle } from "@/assets/styles/editarPerfilStyle";
-import API_BASE_URL from "@/config";
+import {API_BASE_URL} from "@/config";
 
 export default function editarPerfil() {
   const [user, setUser] = useState({});
@@ -36,7 +36,9 @@ export default function editarPerfil() {
         setEmail(response.data.email);
         console.log(token)
       } catch (error) {
-        Alert.alert("Error al obtener el perfil");
+        Alert.alert("Error al obtener el perfil",
+          "Error de conexión"
+        );
         console.log(error);
       }
     };
@@ -57,10 +59,14 @@ export default function editarPerfil() {
       );
       console.log(token);
       setUser(response.data);
-      Alert.alert("Perfil Actualizado con exito");
-      router.push("(tabs)/Home");
+      Alert.alert("Perfil Actualizado con exito",
+        "Tu información ha sido actualizada correctamente"
+      );
+      router.replace("(tabs)/Home");
     } catch (error) {
-      Alert.alert("Error al Actualizar Perfil");
+      Alert.alert("Error al Actualizar Perfil",
+        "Hubo un problema al actualizar tu información. Por favor, intenta nuevamente"
+      );
       console.log(error);
     }
   };

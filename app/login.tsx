@@ -8,7 +8,7 @@ import {
   Pressable,
   Alert
 } from "react-native";
-import API_BASE_URL from '../config.js';
+import {API_BASE_URL} from '../config.js';
 import { loginStyle } from "../assets/styles/loginStyle";
 import { EvilIcons, AntDesign } from "@expo/vector-icons";
 import { router, useLocalSearchParams,useRouter } from "expo-router";
@@ -26,10 +26,11 @@ export default function login() {
       const response = await axios.post(`${API_BASE_URL}/login`, {email, password});
       const token = response.data.token;
       await AsyncStorage.setItem('token', token)
-      Alert.alert('login Exitoso')
       router.push("(tabs)/Home");
     }catch(error){
-      Alert.alert('Error al Iniciar sesion')
+      Alert.alert('Error al Iniciar sesion',
+        'Correo o contraseña incorrectos. Por favor, intenta nuevamente',
+      )
       console.log(error)
     }
   };

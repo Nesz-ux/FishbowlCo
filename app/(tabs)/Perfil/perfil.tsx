@@ -13,7 +13,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { perfilStyle } from "../../../assets/styles/perfilStyle";
 import { router } from "expo-router";
-import API_BASE_URL from "@/config";
+import {API_BASE_URL} from "@/config";
 
 
 export default function Perfil() {

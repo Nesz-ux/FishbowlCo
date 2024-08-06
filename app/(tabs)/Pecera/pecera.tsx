@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import axios from 'axios';
+import {esp32Ip} from '../../../config.js'
 
-const esp32Ip = 'http://192.168.100.172'; // Reemplaza con la IP del ESP32
 
 export default function Pecera() {
   const handleLEDOn = async () => {
