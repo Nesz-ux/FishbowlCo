@@ -48,7 +48,7 @@ export default function Perfil() {
       await AsyncStorage.removeItem('token');
       await AsyncStorage.clear();
       setUser(null); // Limpiar el estado del usuario
-      router.replace('login'); // Redirigir a la pantalla de login
+      router.replace('/login'); // Redirigir a la pantalla de login
       console.log('Token Eliminado')
     } catch (error) {
       console.error("Error al limpiar el cache:", error);
@@ -99,7 +99,7 @@ export default function Perfil() {
               <View>
                 <Pressable
                   style={perfilStyle.btnEditar}
-                  onPress={() => router.navigate("editarPerfil")}
+                  onPress={() => router.navigate("/editarPerfil")}
                 >
                   <Text style={perfilStyle.textBtn}>Editar Perfil</Text>
                 </Pressable>

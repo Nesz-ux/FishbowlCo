@@ -62,7 +62,7 @@ export default function editarPerfil() {
       Alert.alert("Perfil Actualizado con exito",
         "Tu información ha sido actualizada correctamente"
       );
-      router.replace("(tabs)/Home");
+      router.replace("/(tabs)/Home");
     } catch (error) {
       Alert.alert("Error al Actualizar Perfil",
         "Hubo un problema al actualizar tu información. Por favor, intenta nuevamente"
@@ -80,7 +80,7 @@ export default function editarPerfil() {
             name="arrow-back-circle-outline"
             size={35}
             color="#00086a"
-            onPress={() => router.replace("(tabs)/Home")}
+            onPress={() => router.replace("/(tabs)/Home")}
           />
         </View>
 

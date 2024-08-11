@@ -26,7 +26,7 @@ export default function login() {
       const response = await axios.post(`${API_BASE_URL}/login`, {email, password});
       const token = response.data.token;
       await AsyncStorage.setItem('token', token)
-      router.push("(tabs)/Home");
+      router.push("/(tabs)/Home");
     }catch(error){
       Alert.alert('Error al Iniciar sesion',
         'Correo o contraseña incorrectos. Por favor, intenta nuevamente',
@@ -87,7 +87,7 @@ export default function login() {
 
         <Pressable
           style={loginStyle.btnRegistro}
-          onPress={() => router.push('registro') }
+          onPress={() => router.push('/registro') }
         >
           <Text style={loginStyle.textBtn}>Registrarse</Text>
         </Pressable>
