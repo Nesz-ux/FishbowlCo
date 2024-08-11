@@ -6,6 +6,7 @@ import { peceraStyle } from "../../../assets/styles/peceraStyle";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Pecera() {
+  
   const handleLEDOn = async () => {
     try {
       await axios.get(`${esp32Ip}/led/on`);
