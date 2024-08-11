@@ -1,31 +1,31 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-
+import { Stack } from "expo-router";
 export default function TabLayout() {
   return (
-    <Tabs 
-      screenOptions={{ tabBarActiveTintColor: "blue" }
-      
-    }
-      
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "#00086a",
+      }}
     >
       <Tabs.Screen
         name="Home/index"
         options={{
-          headerShown:false,
+          headerShown: false,
           title: "Home",
           tabBarIcon: ({ color }) => (
-            <FontAwesome size={28} name="home" color={color} />
+            <FontAwesome size={35} name="home" color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="Pecera/pecera"
         options={{
-          headerShown:false,
+          headerShown: false,
           title: "Pecera",
           tabBarIcon: ({ color }) => (
-            <FontAwesome size={28} name="user-circle" color={color} />
+            <MaterialCommunityIcons size={35} name="fishbowl" color={color} />
           ),
         }}
       />
@@ -33,14 +33,13 @@ export default function TabLayout() {
       <Tabs.Screen
         name="Perfil/perfil"
         options={{
-          headerShown:false,
+          headerShown: false,
           title: "Perfil",
           tabBarIcon: ({ color }) => (
-            <FontAwesome size={28} name="user" color={color} />
+            <FontAwesome size={35} name="user" color={color} />
           ),
         }}
       />
-      
     </Tabs>
   );
 }

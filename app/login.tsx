@@ -8,11 +8,12 @@ import {
   Pressable,
   Alert
 } from "react-native";
+import {API_BASE_URL} from '../config.js';
 import { loginStyle } from "../assets/styles/loginStyle";
 import { EvilIcons, AntDesign } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { router, useLocalSearchParams,useRouter } from "expo-router";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function login() {
@@ -22,16 +23,18 @@ export default function login() {
 
   const handleLogin = async () => {
     try{
-      const response = await axios.post('http://192.168.100.5:5000/login', {email, password});
+      const response = await axios.post(`${API_BASE_URL}/login`, {email, password});
       const token = response.data.token;
       await AsyncStorage.setItem('token', token)
-      Alert.alert('login Exitoso')
-      router.push("(tabs)/Home");
+      router.push("/(tabs)/Home");
     }catch(error){
-      Alert.alert('Error al Iniciar sesion')
+      Alert.alert('Error al Iniciar sesion',
+        'Correo o contraseña incorrectos. Por favor, intenta nuevamente',
+      )
       console.log(error)
     }
-  }
+  };
+
 
   return (
     <ScrollView>
@@ -76,15 +79,15 @@ export default function login() {
 
         <Pressable
           style={loginStyle.btnSesion}
-          //onPress={ handleLogin }
-          onPress={() => router.push('(tabs)/Home')}
+          onPress={ handleLogin }
+          //onPress={() => router.push('(tabs)/Home')}
         >
           <Text style={loginStyle.textBtn}>Iniciar Sesion</Text>
         </Pressable>
 
         <Pressable
           style={loginStyle.btnRegistro}
-          onPress={() => router.push('registro') }
+          onPress={() => router.push('/registro') }
         >
           <Text style={loginStyle.textBtn}>Registrarse</Text>
         </Pressable>
