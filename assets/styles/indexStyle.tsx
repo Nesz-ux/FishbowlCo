@@ -17,7 +17,7 @@ export const indexStyle= StyleSheet.create({
         
       },
       button: {
-        backgroundColor: '#007AFF',
+        backgroundColor: '#CAEBF2',
         padding: 15,
         borderRadius: 5,
     },
@@ -29,15 +29,16 @@ export const indexStyle= StyleSheet.create({
     expandableContainer: {
         overflow: 'hidden',
         width: '100%',
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#CAEBF2',
         marginTop: 10,
         borderRadius: 5,
         paddingHorizontal: 10,
         paddingVertical: 5,
     },
     infoText: {
-        fontSize: 14,
+        fontSize: 10,
         color: '#333',
+
     },
     titulo: {
         color: '#00086a',
