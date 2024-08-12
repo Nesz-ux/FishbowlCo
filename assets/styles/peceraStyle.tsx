@@ -43,4 +43,33 @@ export const peceraStyle = StyleSheet.create({
     width: 110,
     height: 110,
   },
+
+  //Botones
+  cardsContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+  },
+  card: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    width: "42%",
+    paddingVertical: 30,
+    paddingHorizontal: 10,
+    marginBottom: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
+    margin:10
+  },
+  cardText: {
+    color: "#00086a",
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop:30
+  },
 });
