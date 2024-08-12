@@ -1,49 +1,53 @@
-import React, { useState } from 'react';
-import { globalStyles } from '@/assets/styles/globalStyle';
+import React, { useState, useRef } from 'react';
 import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, Animated, StyleSheet } from 'react-native';
-import { useFonts } from 'expo-font';
+import { indexStyle } from "../../../assets/styles/indexStyle";
 
-export default function Tab() {
-  const [fontsLoaded] = useFonts({
-    'ConcertOne-Regular': require('../../../assets/fonts/ConcertOne-Regular.ttf'),
-    'Quicksand-VariableFont_wght': require('../../../assets/fonts/Quicksand-VariableFont_wght.ttf'),
-  });
-  const [expanded, setExpanded] = useState(false);
-  const [heightAnim] = useState(new Animated.Value(0)); // Valor inicial de la animación de altura
+export default function index() {
+    const [expanded, setExpanded] = useState(false);
+    const animatedHeight = useRef(new Animated.Value(0)).current;
 
-  const toggleExpand = () => {
-    setExpanded(!expanded);
-    Animated.timing(heightAnim, {
-      toValue: expanded ? 0 : 100, // Ajusta la altura de la expansión
-      duration: 300,
-      useNativeDriver: false, // Cambia a `true` para optimizar animaciones de transformaciones
-    }).start();
-  };
+    const toggleExpansion = () => {
+        const finalHeight = expanded ? 0 : 150;
 
-  if (!fontsLoaded) {
-    return <Text>Loading fonts...</Text>;
-  }
+        Animated.timing(animatedHeight, {
+            toValue: finalHeight,
+            duration: 300,
+            useNativeDriver: false,
+        }).start();
 
-  return (
-    <SafeAreaView style={globalStyles.container}>
-      <ScrollView contentContainerStyle={globalStyles.scrollViewContent}>
-        <View style={globalStyles.contentContainer}>
-          <Text style={globalStyles.TITULO1}>FISHBOWL CO</Text>
-          <Text style={globalStyles.textlabel}>
-            ¡Bienvenidos a Fishbowl! Tu compañero ideal para mantener tu pecera en perfecto estado.
-          </Text>
-          <TouchableOpacity style={globalStyles.margen} onPress={toggleExpand}>
-            <Text style={globalStyles.textlabel2}>
-              {expanded ? 'Cerrar información' : 'Descubre las especies'}
-            </Text>
-          </TouchableOpacity>
-          <Animated.View style={[globalStyles.expandedContainer,{ height: heightAnim },]}>
-            <Text style={globalStyles.additionalInfo}>
-              Tipos de peces
-            </Text>
-          </Animated.View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+        setExpanded(!expanded);
+    };
+
+    return (
+        <ScrollView>
+            <SafeAreaView>
+                <View style={indexStyle.container}>
+                    <Text style={indexStyle.titulo}>
+                        Welcome Fishbowl
+                    </Text>
+                </View>
+
+                <View style={indexStyle.container1}>
+                    <Text style={indexStyle.texto}>
+                        Explora el fascinante mundo de las peceras y descubre todo lo que necesitas saber para crear
+                        un ambiente acuático perfecto.
+                    </Text>
+
+                    <View style={indexStyle.container}>
+                        <TouchableOpacity onPress={toggleExpansion} style={indexStyle.button}>
+                            <Text style={indexStyle.buttonText}>
+                                {expanded ? 'Contraer' : 'Expandir'}
+                            </Text>
+                        </TouchableOpacity>
+
+                        <Animated.View style={[indexStyle.expandableContainer, { height: animatedHeight }]}>
+                            <Text style={indexStyle.infoText}>
+                                Aquí puedes mostrar la información que desees al expandir el botón.
+                            </Text>
+                        </Animated.View>
+                    </View>
+                </View>
+            </SafeAreaView>
+        </ScrollView>
+    );
 }
