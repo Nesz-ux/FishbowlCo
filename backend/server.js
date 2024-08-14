@@ -109,9 +109,7 @@ app.get("/profile", async (req, res) => {
   const token = req.headers.authorization;
 
   if (!token) {
-    return res
-      .status(401)
-      .json({ message: "No token, authorization denied" });
+    return res.status(401).json({ message: "No token, authorization denied" });
   }
 
   try {
@@ -133,10 +131,7 @@ app.put(
       .not()
       .isEmpty()
       .withMessage("El nombre de usuario es requerido"),
-    check("email")
-      .optional()
-      .isEmail()
-      .withMessage("Inserte un Correo valido"),
+    check("email").optional().isEmail().withMessage("Inserte un Correo valido"),
     check("password")
       .optional()
       .isLength({ min: 6 })
@@ -176,5 +171,48 @@ app.put(
     }
   }
 );
+
+//Guardado de datos
+const TemperatureSchema = new mongoose.Schema({
+  temperatura: { type: Number, required: true },
+  timestamp: { type: Date, required: true },
+});
+
+const Temperature = mongoose.model("Temperature", TemperatureSchema);
+
+// Ruta para guardar datos de temperatura
+app.post("/save-temperature", async (req, res) => {
+  const { temperatura } = req.body;
+
+  // Validación simple
+  if (typeof temperatura !== "number") {
+    return res.status(400).json({ message: "Invalid data" });
+  }
+
+  try {
+    const temperature = new Temperature({
+      temperatura,
+      timestamp: new Date(),
+    });
+    await temperature.save();
+    res.status(200).json({ message: "Temperature data saved successfully" });
+  } catch (error) {
+    console.error("Error saving temperature:", error);
+    res.status(500).send("Server error");
+  }
+});
+
+
+//mostrar los datos
+// Ruta para obtener datos de temperatura
+app.get("/temperatures", async (req, res) => {
+  try {
+    const temperatures = await Temperature.find().sort({ timestamp: -1 });
+    res.json(temperatures);
+  } catch (error) {
+    console.error("Error fetching temperatures:", error);
+    res.status(500).send("Server error");
+  }
+});
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
