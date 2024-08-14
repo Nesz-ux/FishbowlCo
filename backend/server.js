@@ -37,11 +37,11 @@ const User = mongoose.model("User", UserSchema);
 app.post(
   "/register",
   [
-    check("username").not().isEmpty().withMessage("Username is required"),
+    check("username").not().isEmpty().withMessage("El usuario es requerido"),
     check("email").isEmail().withMessage("Valid email is required"),
     check("password")
       .isLength({ min: 6 })
-      .withMessage("Password must be at least 6 characters long"),
+      .withMessage("La contraseña debe ser de almenos 6 caracteres"),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -62,7 +62,7 @@ app.post(
 
       const newUser = new User({ username, email, password: hashedPassword });
       await newUser.save();
-      res.send("User registered successfully");
+      res.send("Usuario registrado correctamente");
     } catch (error) {
       console.error(error);
       res.status(500).send("Server error");

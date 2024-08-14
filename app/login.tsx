@@ -74,6 +74,7 @@ export default function login() {
             style={loginStyle.input}
             value={password}
             onChangeText={setPassword}
+            secureTextEntry={true}
           />
         </View>
 

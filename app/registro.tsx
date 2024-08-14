@@ -13,15 +13,39 @@ export default function registro (){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [emailError, setEmailError] = useState('');
+
+    const validateEmail = (email: string) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    };
+
     const handleRegister = async () => {
-      try{
-        await axios.post(`${API_BASE_URL}/register`, {username, email, password});
-        Alert.alert('Registro Exitoso');
-        router.push("/login");
-      }catch(error){
-        console.log(error)
+      if (!validateEmail(email)) {
+        Alert.alert('Error', 'Correo electrónico inválido');
+        return;
       }
-    }
+  
+      try {
+        const response = await axios.post(`${API_BASE_URL}/register`, { username, email, password });
+        Alert.alert('Registro Exitoso', response.data);
+        router.push("/login");
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          // Error de Axios, puedes acceder a error.response.data
+          if (error.response && error.response.data && error.response.data.errors) {
+            const errors = error.response.data.errors;
+            const errorMessages = errors.map((err: any) => err.msg).join('\n');
+            Alert.alert('Error', errorMessages);
+          } else {
+            Alert.alert('Error', 'Ocurrió un error al registrar el usuario.');
+          }
+        } else {
+          // Otro tipo de error
+          Alert.alert('Error', 'Ocurrió un error inesperado.');
+        }
+      }
+    };
 
     return (
       <ScrollView>
@@ -81,6 +105,7 @@ export default function registro (){
             style={registroStyle.input}
             value={password}
             onChangeText={setPassword}
+            secureTextEntry={true}
           />
         </View>
 
