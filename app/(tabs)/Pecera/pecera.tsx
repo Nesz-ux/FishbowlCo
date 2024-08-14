@@ -1,20 +1,15 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import axios from "axios";
-import { esp32Ip } from "../../../config.js";
+import { esp32Ip, API_BASE_URL } from "../../../config.js";
 import { peceraStyle } from "../../../assets/styles/peceraStyle";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Pecera() {
   const [isLEDon, setIsLEDon] = useState(false);
   const [servoOn, setServoOn] = useState(false);
-  const [bubblesOn, setBubblesOn] = useState(false); // Estado para las burbujas
+  const [bubblesOn, setBubblesOn] = useState(false); 
+  const [temperature, setTemperature] = useState<number | null>(null);
 
   const toggleFood = async () => {
     try {
@@ -53,6 +48,20 @@ export default function Pecera() {
       alert("Error cambiando el estado de las burbujas");
     }
   };
+
+  useEffect(() => {
+    const fetchTemperature = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/ultimo-valor`);
+        const roundedTemperature = Math.floor(response.data.temperatura);
+        setTemperature(roundedTemperature);
+      } catch (error) {
+        console.error("Error fetching temperature:", error);
+      }
+    };
+
+    fetchTemperature(); // Llamar a la función para obtener la temperatura al cargar el componente
+  }, []);
 
   return (
     <View style={peceraStyle.container}>
@@ -96,6 +105,17 @@ export default function Pecera() {
       </View>
 
       <View style={peceraStyle.cardsContainer}>
+
+      <TouchableOpacity style={peceraStyle.card}>
+          <Text style={peceraStyle.temperatura}>
+            {temperature !== null ? `${temperature}°` : "Cargando..."}
+          </Text>
+          <Text style={peceraStyle.cardText}>
+            Temperatura °C
+          </Text>
+        </TouchableOpacity>
+        
+
         <TouchableOpacity style={peceraStyle.card} onPress={toggleBubbles}>
           <Image
             source={

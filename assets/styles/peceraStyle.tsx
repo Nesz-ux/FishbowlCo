@@ -52,7 +52,7 @@ export const peceraStyle = StyleSheet.create({
   },
   card: {
     backgroundColor: "white",
-    borderRadius: 10,
+    borderRadius: 20,
     width: "42%",
     paddingVertical: 30,
     paddingHorizontal: 10,
@@ -67,9 +67,19 @@ export const peceraStyle = StyleSheet.create({
     margin:10
   },
   cardText: {
-    color: "#00086a",
+    color: "#000",
     fontWeight: "bold",
     textAlign: "center",
-    marginTop:30
+    marginTop:30,
+    fontSize:20
+  },
+  temperatura: {
+    marginTop:30,
+    width: 110,
+    height: 110,
+    fontSize:70,
+    textAlign:"center",
+    color: "#004D40",
+    fontWeight:"900"
   },
 });

@@ -215,4 +215,19 @@ app.get("/temperatures", async (req, res) => {
   }
 });
 
+// Ruta para obtener el último dato de temperatura
+app.get("/ultimo-valor", async (req, res) => {
+  try {
+    const lastTemperature = await Temperature.findOne().sort({ timestamp: -1 });
+    if (!lastTemperature) {
+      return res.status(404).json({ message: "No temperature data found" });
+    }
+    res.json(lastTemperature);
+  } catch (error) {
+    console.error("Error fetching last temperature:", error);
+    res.status(500).send("Server error");
+  }
+});
+
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
