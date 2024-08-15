@@ -24,9 +24,9 @@ export default function Pecera() {
   const toggleLED = async () => {
     try {
       if (isLEDon) {
-        await axios.get(`${esp32Ip}/led/off`);
+        await axios.get(`${esp32Ip}/luces/off`);
       } else {
-        await axios.get(`${esp32Ip}/led/on`);
+        await axios.get(`${esp32Ip}/luces/on`);
       }
       setIsLEDon(!isLEDon); // Cambiar el estado
     } catch (error) {
@@ -38,9 +38,9 @@ export default function Pecera() {
   const toggleBubbles = async () => {
     try {
       if (bubblesOn) {
-        await axios.get(`${esp32Ip}/relay/off`); // Cambiar la URL a la correcta para el relé
+        await axios.get(`${esp32Ip}/bomba/off`); // Cambiar la URL a la correcta para el relé
       } else {
-        await axios.get(`${esp32Ip}/relay/on`); // Cambiar la URL a la correcta para el relé
+        await axios.get(`${esp32Ip}/bomba/on`); // Cambiar la URL a la correcta para el relé
       }
       setBubblesOn(!bubblesOn); // Cambiar el estado
     } catch (error) {
@@ -93,13 +93,13 @@ export default function Pecera() {
           <Image
             source={
               isLEDon
-                ? require("../../../assets/images/luz-on.png") // Imagen cuando el LED está encendido
-                : require("../../../assets/images/luz-off.png") // Imagen cuando el LED está apagado
+                ? require("../../../assets/images/luz-off.png") // Imagen cuando el LED está encendido
+                : require("../../../assets/images/luz-on.png") // Imagen cuando el LED está apagado
             }
             style={peceraStyle.image}
           />
           <Text style={peceraStyle.cardText}>
-            {isLEDon ? "Apagar" : "Encender"} {/* Mostrar estado */}
+            {isLEDon ? "Encender" : "Apagar"} {/* Mostrar estado */}
           </Text>
         </TouchableOpacity>
       </View>
@@ -120,13 +120,13 @@ export default function Pecera() {
           <Image
             source={
               bubblesOn
-                ? require("../../../assets/images/burbujas-on.png") // Imagen cuando el relé está encendido
-                : require("../../../assets/images/burbujas-off.png") // Imagen cuando el relé está apagado
+                ? require("../../../assets/images/burbujas-off.png") // Imagen cuando el relé está encendido
+                : require("../../../assets/images/burbujas-on.png") // Imagen cuando el relé está apagado
             }
             style={peceraStyle.image}
           />
           <Text style={peceraStyle.cardText}>
-            {bubblesOn ? "Apagar" : "Encender"} {/* Mostrar estado */}
+            {bubblesOn ? "Encender" : "Apagar"} {/* Mostrar estado */}
           </Text>
         </TouchableOpacity>
       </View>
